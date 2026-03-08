@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ayat - Professional Cardiologist</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* গ্লোবাল ভেরিয়েবল এবং বেসিক স্টাইল */
+        :root {
+            --primary-color: #0e7490;
+            /* গাঢ় সায়ান বা টিল */
+            --secondary-color: #f43f5e;
+            /* কোরাল রেড - অ্যাকসেন্টের জন্য */
+            --dark-bg: #111827;
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* ০. মেনু / নেভিগেশন বার */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-appointment {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-appointment:hover {
+            background-color: #155e75;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 116, 144, 0.3);
+        }
+
+        /* ১. হিরো সেকশন */
+        #hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(to right, #f0f9ff, #fff);
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img img {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% {
+                border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+            }
+
+            50% {
+                border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        /* সেকশন কমন স্টাইল */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--dark-bg);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        /* ২. অ্যাবাউট সেকশন */
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-img img {
+            width: 100%;
+            transition: transform 0.5s;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .stats-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* ৩. সার্ভিসেস (What we do) */
+        #services {
+            background-color: var(--light-bg);
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--secondary-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ৪. আওয়ার ক্লায়েন্ট (Testimonials) */
+        .client-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .client-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        /* ৫. কন্টাক্ট আস */
+        #contact {
+            background: var(--dark-bg);
+            color: #fff;
+            position: relative;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            color: #333;
+        }
+
+        .form-control {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        /* ৬. বটম সেকশন (ফুটার) */
+        footer {
+            background: #0b1120;
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* রেসপন্সিভ অ্যাডজাস্টমেন্ট */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-img img {
+                max-width: 300px;
+                margin-top: 30px;
+            }
+
+            .stats-box {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ০. মেনু / নেভিগেশন -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-heartbeat me-2"></i>Dr. Ayat</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#clients">Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="#contact" class="btn btn-appointment">Appointment</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ১. হিরো সেকশন -->
+    <section id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="hero-text">
+                        <h4 class="text-primary mb-3">Welcome to My Clinic</h4>
+                        <h1>Best Healthcare & <br><span>Doctor Ayat</span> For You</h1>
+                        <p>Providing premium medical care with a personal touch. Specialized in cardiology and internal
+                            medicine with over 10 years of experience.</p>
+                        <div class="d-flex gap-3">
+                            <a href="#contact" class="btn btn-appointment">Book Now</a>
+                            <a href="#about" class="btn btn-outline-dark rounded-pill px-4 py-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <div class="hero-img">
+                        <!-- র‍্যান্ডম ডাক্তারের ছবি -->
+                        <img src="https://picsum.photos/seed/doctor_ayat_hero/600/600" alt="Dr. Ayat">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ২. অ্যাবাউট সেকশন -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="about-img">
+                        <img src="https://picsum.photos/seed/doctor_working/600/400" alt="About Dr. Ayat">
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <div class="section-title text-start mb-4">
+                        <h2>About Doctor Ayat</h2>
+                    </div>
+                    <p class="lead text-muted">Dedicated to providing the best medical solutions with modern technology.
+                    </p>
+                    <p>Dr. Ayat is a renowned specialist committed to patient care and well-being. With a
+                        state-of-the-art clinic and a compassionate approach, we ensure that every patient receives the
+                        treatment they deserve.</p>
+
+                    <div class="stats-box">
+                        <div class="stat-item">
+                            <h3>10+</h3>
+                            <p>Years Exp.</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>2k+</h3>
+                            <p>Happy Patients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>15+</h3>
+                            <p>Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ৩. হোয়াট উই ডু (সার্ভিসেস) -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p class="mt-3 text-muted">Comprehensive healthcare services designed for your needs.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4>Cardiology</h4>
+                        <p>Expert heart care including diagnostics, treatment, and prevention of heart diseases.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Neurology</h4>
+                        <p>Advanced care for neurological disorders with top-tier specialists and equipment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <h4>Surgery</h4>
+                        <p>Safe and precise surgical procedures performed in a sterile, modern environment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4>Eye Care</h4>
+                        <p>Comprehensive vision checks and eye treatments to keep your sight perfect.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h4>Pediatric</h4>
+                        <p>Specialized medical care for infants, children, and adolescents.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h4>Emergency</h4>
+                        <p>24/7 emergency support for critical situations with rapid response teams.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ৪. আওয়ার ক্লায়েন্ট (টেস্টিমোনিয়ালস) -->
+    <section id="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Patients Say</h2>
+                <p class="mt-3 text-muted">Trusted by thousands of happy clients.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="client-card">
+                        <img src="https://picsum.photos/seed/patient1/100/100" class="client-img" alt="Client">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-muted">"Dr. Ayat is incredibly professional and caring. The diagnosis was
+                            accurate, and the treatment worked wonders."</p>
+                        <h5 class="fw-bold">Sarah Johnson</h5>
+                        <small class="text-primary">Heart Patient</small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="client-card">
+                        <img src="https://picsum.photos/seed/patient2/100/100" class="client-img" alt="Client">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-muted">"The clinic environment is very clean and modern. Staff is polite, and Dr.
+                            Ayat listens to every problem patiently."</p>
+                        <h5 class="fw-bold">Michael David</h5>
+                        <small class="text-primary">Surgery Patient</small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="client-card">
+                        <img src="https://picsum.photos/seed/patient3/100/100" class="client-img" alt="Client">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-muted">"Highly recommended! The best medical experience I've ever had. Thank you,
+                            Dr. Ayat!"</p>
+                        <h5 class="fw-bold">Emily Clark</h5>
+                        <small class="text-primary">Regular Checkup</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ৫. কন্টাক্ট আস -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="pe-lg-4">
+                        <h2 class="mb-4">Get In Touch</h2>
+                        <p class="text-light opacity-75 mb-5">Have a question or want to book an appointment? Fill out
+                            the form or contact us directly.</p>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Our Location</h5>
+                                <p class="m-0 opacity-75">123 Medical Center, Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Phone Number</h5>
+                                <p class="m-0 opacity-75">+880 1234 567 890</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Email Address</h5>
+                                <p class="m-0 opacity-75">contact@drayat.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent.');">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message"
+                                        required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-appointment w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ৬. বটম সেকশন (ফুটার) -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-white fw-bold mb-3">Dr. Ayat</h3>
+                    <p class="mb-4">Committed to excellence in healthcare.</p>
+                    <div class="social-links mb-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <hr class="border-secondary opacity-25 mb-4">
+                    <p class="mb-0">&copy; 2023 Dr. Ayat Clinic. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- স্ক্রলে মেনুর স্টাইল পরিবর্তনের জন্য ছোট্ট স্ক্রিপ্ট -->
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm');
+                navbar.style.padding = '10px 0';
+            } else {
+                navbar.classList.remove('shadow-sm');
+                navbar.style.padding = '15px 0';
+            }
+        });
+    </script>
+</body>
+
+</html>
